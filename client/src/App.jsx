@@ -22,6 +22,20 @@ const handleLangauge = async (value) => {
 
 const convertText = async (text, lang) => {
 
+  let isoCode = ''
+
+  switch(lang){
+    case "Japanese":
+      isoCode = "ja";
+      break;
+    case "Spanish":
+      isoCode = "es"
+      break;
+    case "Chinese":
+      isoCode = "zh";
+      break;
+  }
+
   try {
 
     const response = await fetch(`${env}/translate`, {
@@ -29,7 +43,7 @@ const convertText = async (text, lang) => {
       headers: {'Content-Type': 'application/json',},
       body: JSON.stringify({
         Text: text,
-        Lang: lang
+        Lang: isoCode,
       }),
     });
 
