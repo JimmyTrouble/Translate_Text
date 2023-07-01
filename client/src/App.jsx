@@ -1,17 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
+import Header from './components/Header'
+import Body from './components/body'
 
 function App() {
-  const handleClick = () => {
 
-    console.log("clicked")
-    fetch("http://localhost:3002/")
-    
+const [langauge, setLanguage] = useState('')
 
-  }
+
+
+function handleLangauge(value){
+
+  setLanguage(value)
+
+}
+
   return (
     <div>
-      <h1>hello</h1>
-      <button onClick={handleClick}></button>
+      <Header
+      headerLangauge = {langauge ? langauge : handleLangauge("Japanese")}
+      
+      />
+      <Body changeLanguage={handleLangauge} />
     </div>
   )
 }
