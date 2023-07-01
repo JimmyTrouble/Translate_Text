@@ -8,16 +8,21 @@ const [langauge, setLanguage] = useState('')
 
 const env  = import.meta.env.VITE_APP_API_URL;
 
-function handleLangauge(value){
-
-  setLanguage(value)
-  fetch(`${env}/translate`)
-
-}
-
 useEffect(() => {
   handleLangauge("Japanese")
 }, []); // Empty dependency array means this effect runs once on mount
+
+const handleLangauge = async (value) => {
+  //sets the Header langauge variable
+  setLanguage(value) 
+
+}
+
+const convertText = async (text, lang) => {
+
+  console.log(text, lang)
+
+}
 
   return (
     <div>
@@ -25,7 +30,7 @@ useEffect(() => {
       headerLangauge = {langauge }
       
       />
-      <Body changeLanguage={handleLangauge} />
+      <Body textToConvert={convertText} changeLanguage={handleLangauge}/>
     </div>
   )
 }
