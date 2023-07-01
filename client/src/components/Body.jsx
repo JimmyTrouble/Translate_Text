@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 function Body(props) {
 
+  //state of the dropdown menu lang
   const [selectedLang, setSelectedLang] = useState()
 
+  //uses the onChange function of the <select> to set the lang with useState
   const handleChange = (event) => {
     props.changeLanguage(event.target.value);
     setSelectedLang(event.target.value)
   };
 
+  //passes the text and lanf as props to app
   const handleSubmit = (event) => {
-    event.preventDefault(); // This will prevent the form from being submitted in the traditional way (which would cause a page refresh)
+    event.preventDefault(); 
     const text = event.target[0].value;
     props.textToConvert(text, selectedLang);
   };
+
+  useEffect(() => {setSelectedLang("Japanese")}, []);
  
 
 
